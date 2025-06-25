@@ -1,5 +1,6 @@
 import { cookies } from "next/headers"
 import jwt from 'jsonwebtoken';
+import LogoutButton from "../finance/LogoutButton"
 
 
 export default async function FinancePage(){
@@ -16,6 +17,7 @@ export default async function FinancePage(){
             <div className="p-10">
                 <h1 className="text-3xl font-bold">Welcome to the Finance Page</h1>
                 <p>User Email: {(user as any).email}</p>
+                <LogoutButton />
             </div>
             );
         } catch (error) {
