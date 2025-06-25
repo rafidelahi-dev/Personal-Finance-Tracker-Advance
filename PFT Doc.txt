@@ -1,0 +1,145 @@
+🧾 Project Specification Document
+
+Project Title: **Personal Finance Tracker (PFT)**
+
+Developer: Rafid Elahi
+Stack: React.js, Next.js, Node.js, PostgreSQL / MySQL, Prisma ORM, Tailwind CSS, TypeScript (optional)
+
+📌 Objective
+
+The Personal Finance Tracker (PFT) is a full-stack web application designed to help individuals manage and track their personal finances in a structured and automated way. It replaces manual spreadsheet-based bookkeeping by providing users with an intuitive, responsive, and real-time financial dashboard.
+
+📈 Core Features
+
+1. User Authentication & Authorization
+
+* Secure user registration and login system
+* JWT/Session-based authentication
+* Role-based access (initially just user-level roles)
+
+2. Account Types & Balance Tracking
+
+Users can define and manage multiple types of financial accounts:
+
+**Cash**
+**Bank Account(s)**
+**E-Wallet (e.g., Touch n Go)**
+**Others (custom)**
+
+Each account will have:
+
+* Starting balance
+* Current balance
+* Transaction history
+
+3. **Monthly Budgeting System**
+
+Users can:
+
+* Define **monthly budgets** with custom categories (e.g., Food, Utilities, Transportation)
+* Assign transactions to these categories
+* View total spent vs. budgeted per category per month
+
+#### 4. **Transaction Management (CRUD)**
+
+* Add, edit, delete, and view transactions
+* Support for income, expense, and transfer between accounts
+* Tag transactions with:
+
+  * **Category**
+  * **Date**
+  * **Notes**
+  * **Related Person** (for lending/borrowing)
+
+#### 5. **Lending/Borrowing Tracker**
+
+* Track money lent to and borrowed from individuals
+* Maintain running balances per person
+* Filter list of people with outstanding dues
+* Option to mark repayments and partial settlements
+
+#### 6. **One-Time vs. Recurring Transactions**
+
+* Flag entries as recurring (e.g., rent, subscriptions)
+* Recurring transactions auto-generate monthly or by user trigger
+
+#### 7. **Dashboard & Analytics**
+
+* Visual breakdown of:
+
+  * Spending by category (pie chart)
+  * Monthly savings trend (line chart)
+  * Net cash flow (income vs. expense)
+* Account summary with current balances
+* Budget summary with over/under-spent indicators
+
+#### 8. **Data Filtering & Search**
+
+* Filter transactions by:
+
+  * Date range
+  * Account
+  * Category
+  * Person
+* Full-text search by notes or keywords
+
+#### 9. **Export/Backup System**
+
+* Export data as `.csv` or `.xlsx`
+* Download monthly reports
+* (Optional future feature: cloud backups or email export)
+
+---
+
+### ⚙️ Tech Stack Overview
+
+| Layer      | Technology                                                                |
+| ---------- | ------------------------------------------------------------------------- |
+| Frontend   | React.js, Next.js, Tailwind CSS, Chart.js or Recharts                     |
+| Backend    | Node.js with Express or Next API routes                                   |
+| Database   | PostgreSQL or MySQL via Prisma ORM                                        |
+| Auth       | JWT / NextAuth.js (if using Next.js)                                      |
+| Deployment | Vercel / Render (frontend), Railway / Supabase / PlanetScale (backend/db) |
+
+---
+
+### 🧩 Feature Prioritization (MVP First)
+
+**MVP Scope:**
+
+* Auth system
+* Account creation
+* Add/edit/delete transactions
+* Monthly budget tracking
+* Dashboard with balances and basic analytics
+* Lending/borrowing feature
+
+**Post-MVP Enhancements:**
+
+* Recurring transactions
+* Export & backup
+* Advanced filters
+* Notifications/reminders
+* Multi-currency support
+
+---
+
+### 🎯 Goals
+
+* Simplify financial tracking for individual users with an all-in-one intuitive dashboard
+* Improve personal budgeting discipline by categorizing and visualizing expenses
+* Lay the foundation for a scalable system that can eventually support multiple users or become a SaaS product
+
+---
+
+### 🧪 Optional Extensions (Future Work)
+
+* PWA for mobile use
+* OCR or receipt scanning
+* AI-based budget suggestions
+* Gamified savings goals
+* Shared family/group account management
+
+---
+
+Let me know if you want a visual wireframe layout, schema design, or feature development roadmap next.
