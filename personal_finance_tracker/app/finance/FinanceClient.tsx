@@ -5,6 +5,7 @@ import LogoutButton from "./LogoutButton";
 import AccountForm from "./components/AccountForm";
 import PaymentForm from "./components/PaymentForm";
 import TransactionsTable from "./components/TransactionsTable";
+import DeleteAccountButton from "./components/DeleteAccountButton";
 
 export default function FinanceClient({ user, account, payments }: any) {
   const [showForm, setShowForm] = useState(false);
@@ -34,6 +35,7 @@ export default function FinanceClient({ user, account, payments }: any) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <PaymentForm accountId={account.id} />
           <TransactionsTable payments={payments} budget={account.budget} />
+          <DeleteAccountButton/>
         </div>
       )}
     </div>
