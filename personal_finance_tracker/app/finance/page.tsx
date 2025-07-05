@@ -4,6 +4,12 @@ import { PrismaClient } from "@prisma/client";
 import RedirectHome from "./RedirectHome";
 import FinanceClient from "./FinanceClient";
 
+type JwtPayload = {
+  userId: string;
+  email: string;
+  fullName: string;
+};
+
 
 export default async function FinancePage(){
     const cookieStore = await cookies();
@@ -50,6 +56,7 @@ export default async function FinancePage(){
         }
         return <FinanceClient user={decoded} account={account} payments={payments} />
         } catch (error) {
+            console.error(error);
             return <div className="p-10 text-red-600">Invalid or expired token</div>;
         }
 }

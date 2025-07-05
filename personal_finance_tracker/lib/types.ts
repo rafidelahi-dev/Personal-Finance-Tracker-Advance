@@ -18,15 +18,5 @@ type Payment = {
   category: 'MONTHLY' | 'EXTERNAL';
 };
 
-type FinanceClientProps = {
-  user: User;
-  account: Account | null;
-  payments: Payment[];
-};
 
-type JwtPayload = {
-  userId: string;
-  email: string;
-  fullName: string;
-};
 

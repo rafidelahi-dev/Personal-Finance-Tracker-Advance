@@ -46,8 +46,6 @@ export default function Page() {
         setMessageType('error');
         return;
       }
-
-      const result = await res.json();
       setMessage('Login Successful');
       setMessageType('success');
       setFormData({fullName: '', email: '', password: ''})

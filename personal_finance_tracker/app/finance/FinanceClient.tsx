@@ -7,6 +7,12 @@ import PaymentForm from "./components/PaymentForm";
 import TransactionsTable from "./components/TransactionsTable";
 import DeleteAccountButton from "./components/DeleteAccountButton";
 
+type FinanceClientProps = {
+  user: User;
+  account: Account | null;
+  payments: Payment[];
+};
+
 export default function FinanceClient({ user, account, payments }: FinanceClientProps) {
   const [showForm, setShowForm] = useState(false);
 
