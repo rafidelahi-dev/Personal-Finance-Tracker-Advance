@@ -6,7 +6,7 @@ import AccountForm from "./components/AccountForm";
 import PaymentForm from "./components/PaymentForm";
 import TransactionsTable from "./components/TransactionsTable";
 import DeleteAccountButton from "./components/DeleteAccountButton";
-import type { User, Account, Payment, FinanceClientProps } from "@/lib/types";
+import type { FinanceClientProps } from "@/lib/types";
 
 
 export default function FinanceClient({ user, account, payments }: FinanceClientProps) {
