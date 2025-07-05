@@ -1,26 +1,37 @@
 import { PrismaClient } from "@prisma/client";
+import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
-export async function DELETE(req:Request, {params}: {params: {id:string}}) {
-   try{
-    const {id} = params;
+export async function DELETE(req: NextRequest) {
+  try {
+    const id = req.nextUrl.pathname.split("/").pop();
+
+    if (!id) {
+      return NextResponse.json({ error: "Missing ID" }, { status: 400 });
+    }
 
     await prisma.payment.delete({
-        where: {id},
+      where: { id },
     });
-    return new Response(JSON.stringify({success: true}), {status: 201});
-   }catch(error){
+
+    return NextResponse.json({ success: true }, { status: 201 });
+  } catch (error) {
     console.error(error);
-    return new Response(JSON.stringify({error: 'Delete Failed'}), {status: 500});
-   }
+    return NextResponse.json({ error: "Delete Failed" }, { status: 500 });
+  }
 }
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
-  const { id } = params;
-  const { amount, description, date, category } = await req.json();
-
+export async function PUT(req: NextRequest) {
   try {
+    const id = req.nextUrl.pathname.split("/").pop();
+
+    if (!id) {
+      return NextResponse.json({ error: "Missing ID" }, { status: 400 });
+    }
+
+    const { amount, description, date, category } = await req.json();
+
     await prisma.payment.update({
       where: { id },
       data: {
@@ -31,9 +42,9 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
       },
     });
 
-    return new Response(JSON.stringify({ success: true }), { status: 200 });
+    return NextResponse.json({ success: true }, { status: 200 });
   } catch (err) {
     console.error("Edit payment error:", err);
-    return new Response(JSON.stringify({ error: "Update failed" }), { status: 500 });
+    return NextResponse.json({ error: "Update failed" }, { status: 500 });
   }
 }
