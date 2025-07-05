@@ -1,4 +1,7 @@
 'use client';
+import { useState } from "react";
+import EditPaymentModal from "./EditPaymentModal";
+
 
 type Payment = {
   id: string;
@@ -17,6 +20,23 @@ export default function TransactionsTable({
 }) {
   const totalSpent = payments.reduce((sum, p) => sum + p.amount, 0);
   const remaining = budget - totalSpent;
+  const [editingPayment, setEditingPayment] = useState<null | Payment>(null);
+
+
+  const handleDelete = async (id: string) => {
+    const confirmed = confirm("Are you sure you want to delete this transaction?")
+    if(!confirmed) return;
+
+    const res = await fetch(`/api/payment/${id}`, {
+      method: 'DELETE',
+    })
+
+    if(res.ok){
+      window.location.reload();
+    }else{
+      alert("Failed to delete transaction")
+    }
+  };
 
   return (
     <div className="bg-white shadow-md p-6 rounded-xl">
@@ -29,12 +49,13 @@ export default function TransactionsTable({
             <th className="p-2 border-b">Description</th>
             <th className="p-2 border-b">Category</th>
             <th className="p-2 border-b">Amount</th>
+            <th className="p-2 border-b text-right">Actions</th>
           </tr>
         </thead>
         <tbody>
           {payments.length === 0 ? (
             <tr>
-              <td colSpan={4} className="p-2 text-center text-gray-500">No payments yet</td>
+              <td colSpan={5} className="p-2 text-center text-gray-500">No payments yet</td>
             </tr>
           ) : (
             payments.map((p) => (
@@ -43,6 +64,20 @@ export default function TransactionsTable({
                 <td className="p-2 border-b">{p.description}</td>
                 <td className="p-2 border-b">{p.category}</td>
                 <td className="p-2 border-b text-red-600">- RM{p.amount.toFixed(2)}</td>
+                <td className="p-2 border-b text-right space-x-2">
+                  <button
+                    onClick={() => setEditingPayment(p)}
+                    className="text-blue-600 hover:underline text-sm"
+                  >
+                    ✏️ Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(p.id)}
+                    className="text-red-600 hover:underline text-sm"
+                  >
+                    🗑️ Delete
+                  </button>
+                </td>
               </tr>
             ))
           )}
@@ -54,6 +89,13 @@ export default function TransactionsTable({
         <p><strong>Total Spent:</strong> RM{totalSpent.toFixed(2)}</p>
         <p><strong>Remaining:</strong> RM{remaining.toFixed(2)}</p>
       </div>
+      {editingPayment && (
+        <EditPaymentModal
+          payment={editingPayment}
+          onClose={() => setEditingPayment(null)}
+        />
+      )}
     </div>
+    
   );
 }

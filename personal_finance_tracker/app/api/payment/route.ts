@@ -22,3 +22,4 @@ export async function POST(req:Request) {
         return new Response(JSON.stringify({error: 'Failed to add payment'}), {status: 500});
     }
 }
+

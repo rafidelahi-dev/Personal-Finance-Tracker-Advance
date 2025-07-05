@@ -3,14 +3,16 @@
 import { useState } from "react";
 
 export default function PaymentForm({ accountId }: { accountId: string }) {
+  const today = new Date().toISOString().split('T')[0];
   const [formData, setFormData] = useState({
     amount: '',
     description: '',
-    date: '',
+    date: today,
     category: 'MONTHLY',
   });
 
   const [message, setMessage] = useState('');
+  
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
