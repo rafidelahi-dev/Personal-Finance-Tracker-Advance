@@ -3,12 +3,7 @@ import jwt from 'jsonwebtoken';
 import { PrismaClient } from "@prisma/client";
 import RedirectHome from "./RedirectHome";
 import FinanceClient from "./FinanceClient";
-
-type JwtPayload = {
-  userId: string;
-  email: string;
-  fullName: string;
-};
+import type { JwtPayload } from "@/lib/types";
 
 
 export default async function FinancePage(){
