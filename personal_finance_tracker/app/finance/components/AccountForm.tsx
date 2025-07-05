@@ -1,9 +1,12 @@
 'use client';
 
 export default function AccountForm({ userId }: { userId: string }) {
-  async function handleSubmit(e: any) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const budget = e.target.budget.value;
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const budget = formData.get('budget');
+    
     const res = await fetch('/api/account', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
-import { cookies } from "next/headers";
 
 const prisma = new PrismaClient();
 

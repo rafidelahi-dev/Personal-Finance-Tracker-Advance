@@ -3,6 +3,12 @@ import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 
 const prisma = new PrismaClient();
+type JwtPayload = {
+  userId: string;
+  email: string;
+  fullName: string;
+};
+
 
 export async function DELETE() {
     try{
@@ -13,13 +19,14 @@ export async function DELETE() {
             return new Response(JSON.stringify({error: 'Unauthorized'}), {status: 401});
         }
 
-        const decoded = jwt.verify(token, process.env.JWT_SECRET!);
-        const userId = (decoded as any).userId;
+        const decoded = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
+        const userId = Number(decoded.userId);
+
 
         await prisma.payment.deleteMany({
             where: {
                 account: {
-                    userId
+                    userId,
                 }
             }
         });
