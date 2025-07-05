@@ -88,8 +88,6 @@ export default function Page() {
       return;
     }
 
-    // Handle success
-    const result = await res.json();
     setMessage('Signup successful!');
     setMessageType('success');
     setFormData({ fullName: '', email: '', password: '' });
